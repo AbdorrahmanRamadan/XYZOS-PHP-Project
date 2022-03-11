@@ -8,9 +8,9 @@ XYZ is file downloader project
 
 ## Plannig and design phase
 
-###UI/UX
+### UI/UX
 
-[UI] : shorturl.at/bkBZ9
+[UI] (shorturl.at/bkBZ9)
 
 ###Requirement analysis 
 
