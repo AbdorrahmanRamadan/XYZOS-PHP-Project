@@ -10,7 +10,7 @@ XYZ is file downloader project
 
 ### UI/UX
 
-[UI] (shorturl.at/bkBZ9)
+[UI] (https://drive.google.com/drive/folders/12Y-rVNrF691RTukezGHPksoBqjT4_qNt?usp=sharing)
 
 ###Requirement analysis 
 
