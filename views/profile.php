@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../src/css/style.css">
 </head>
 <body>
 <nav class="navbar">
     <div class="container">
         <div class="page_logo">
-            <img src="src/images/logo.png" class="logo" draggable="false">
+            <img src="../src/images/logo.png" class="logo" draggable="false">
         </div>
         <div class="profile">
             <i class="fa-solid fa-circle-user profile-logo"></i>
