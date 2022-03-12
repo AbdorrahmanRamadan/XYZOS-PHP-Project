@@ -17,7 +17,9 @@ This is a web application that allows its users to download a file (XYZOS.zip) a
 ### Requirement analysis 
 #### ERD 
 ![erd](https://github.com/AbdorrahmanRamadan/XYZOS-PHP-Project/blob/main/diagrams/erd_diagram.png?raw=true)
+#### Activity Diagram 
 ![Activity diagram](https://github.com/AbdorrahmanRamadan/XYZOS-PHP-Project/blob/main/diagrams/activity_diagram.png?raw=true)
+#### Use Case Diagram
 ![Use case diagram](https://github.com/AbdorrahmanRamadan/XYZOS-PHP-Project/blob/main/diagrams/use_case.png?raw=true)
 
 ## Getting Started
