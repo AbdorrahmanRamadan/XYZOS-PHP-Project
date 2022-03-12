@@ -10,9 +10,10 @@ XYZ is file downloader project
 
 ### UI/UX
 
-[UI] (https://drive.google.com/drive/folders/12Y-rVNrF691RTukezGHPksoBqjT4_qNt?usp=sharing)
+[UI](https://drive.google.com/drive/folders/12Y-rVNrF691RTukezGHPksoBqjT4_qNt?usp=sharing)
+[UX](https://drive.google.com/drive/folders/103ga-25DLs3drc3RjQANh44M4yreHs3r)
 
-###Requirement analysis 
+### Requirement analysis 
 
 
 ## Getting Started
