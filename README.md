@@ -28,14 +28,15 @@ XYZ is file downloader project
 * 
 * 
 
-##Features
+## Features
 *
 *
 *
 
-##Technologies used
-*
-*
+## Technologies used
+* PHP
+* MYSQL
+* HTML/CSS/JS
 
 ## Authors
 
