@@ -14,7 +14,8 @@ XYZ is file downloader project
 [UX](https://drive.google.com/drive/folders/103ga-25DLs3drc3RjQANh44M4yreHs3r)
 
 ### Requirement analysis 
-
+#### ERD 
+![erd](https://github.com/AbdorrahmanRamadan/XYZOS-PHP-Project/tree/main/diagrams/erd_diagram.png?raw=true)
 
 ## Getting Started
 
