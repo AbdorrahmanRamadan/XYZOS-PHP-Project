@@ -1,7 +1,4 @@
 {
-
-
-
   "name": "xyz/xyz_project",
   "description": "PHP project",
   "license" : "MIT",
@@ -10,7 +7,7 @@
   },
 
  "autoload":{
-	"classmap":["Model"], 
+	"classmap":["models","controllers"],
   "files": ["config.php"]
  
  }

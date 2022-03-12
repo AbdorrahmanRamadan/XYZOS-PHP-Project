@@ -2,9 +2,10 @@
 
 class User  {
     public DatabaseConnection $user_connection;
+    public $usersTable;
     public function __construct(){
         $this->user_connection = new DatabaseConnection;
-        $this->user_connection->getTable('users');
+        $this->usersTable->getTable('users');
     }
     public function getUserById($userid){
         //the logic for getting one user
