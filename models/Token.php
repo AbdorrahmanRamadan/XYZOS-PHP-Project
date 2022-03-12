@@ -1,16 +1,18 @@
 <?php
-class Order {
+
+class Token
+{
     public DatabaseConnection $order_connection;
-    public $ordersTable;
+    public $tokensTable;
     public function __construct(){
         $this->order_connection = new DatabaseConnection;
-        $this->ordersTable->getTable('orders');
+        $this->tokensTable->getTable('tokens');
     }
-    public function get_download_count(){
+    public function add_token($userid){
         //select download link
     }
-    public function generate_new_link(){
+    public function remove_token($userid){
         //update download link count and update the link with new ink
     }
-    
+
 }
