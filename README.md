@@ -15,7 +15,7 @@ XYZ is file downloader project
 
 ### Requirement analysis 
 #### ERD 
-![erd](https://github.com/AbdorrahmanRamadan/XYZOS-PHP-Project/tree/main/diagrams/erd_diagram.png?raw=true)
+![erd](https://github.com/AbdorrahmanRamadan/XYZOS-PHP-Project/blob/main/diagrams/erd_diagram.png?raw=true)
 
 ## Getting Started
 
