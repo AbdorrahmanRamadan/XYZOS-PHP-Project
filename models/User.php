@@ -1,24 +1,39 @@
 <?php
-
+require_once("DatabaseConnection.php");
 class User  {
+    
     public DatabaseConnection $user_connection;
     public $usersTable;
     public function __construct(){
         $this->user_connection = new DatabaseConnection;
-        $this->usersTable->getTable('users');
+        $this->usersTable= $this->user_connection->getTable("users");
     }
     public function getUserById($userid){
         //the logic for getting one user
     }
     public function getUserByEmail($useremail){
-        //the logic for getting one user
+        $uid = $this->usersTable->select('id')->where('Email',$useremail)->get();
+        $id=$this->usersTable->value($uid);
+        return $id; 
     }
 
     /**
      * Add new user
      */
-    public function addUser($email,$password){
+    public function insertUser($email,$password){
         //insert user and make the password hashed
+        
+        $hashedPassword=sha1($password);
+        $user = (['Email' => $email, 'Password'=> $hashedPassword]);
+        try{
+            $this->usersTable->insertGetId($user);
+        }catch(\PDOEXCEPTION  $sqler){
+                echo $sqler->getMessage();
+        }
+    
+    
+    
+        
     } 
     /**
      * update user

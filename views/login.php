@@ -5,14 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>LOGIN</title>
-    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
-<img src="../src/images/header_img.svg" class="header_img" draggable="false">
+<img src="src/images/header_img.svg" class="header_img" draggable="false">
 <nav class="navbar">
     <div class="container">
         <div class="page_logo">
-            <img src="../src/images/logo.png" class="logo" draggable="false">
+            <img src="src/images/logo.png" class="logo" draggable="false">
         </div>
     </div>
 </nav>
