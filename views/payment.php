@@ -3,7 +3,6 @@ ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(-1);
 $erJSON = "";
-$userId;
 $result = array(
     "email" => "",
     "password1" => "",
@@ -21,17 +20,7 @@ if (isset($_POST['validate'])) {
     $erJSON = validate_payment_data($email, $password1, $password2, $creditcard, $expdate);
     $result = json_decode($erJSON, true);
     if (empty($result)){
-        require_once('../models/User.php');
-      $user = new User;
-      $user->insertUser($email,$password1);
-      $userId=$user->getUserByEmail($email);
-      require_once('../models/Order.php');
-      $order= new Order;
-      $key0= uniqid(time().'-key',TRUE);
-//$uid,$download_count, $product_link, $product_id
-      $order->insertOrder($userId,0,$key0, 1);
-
-
+      createUser($email,$password1);
     }
 }
 ?>

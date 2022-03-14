@@ -45,3 +45,16 @@ function validate_payment_data($email, $password1, $password2, $creditcard, $exp
     $errorJSON = json_encode($errors);
     return $errorJSON;
 }
+
+function createUser($email,$password1){
+    require_once('../models/User.php');
+    $user = new User;
+    $user->insertUser($email,$password1);
+    $userId=$user->getUserByEmail($email);
+    require_once('../models/Order.php');
+    $order= new Order;
+    $key0= uniqid(time().'-key',TRUE);
+//$uid,$download_count, $product_link, $product_id
+    $order->insertOrder($userId,0,$key0, 1);
+
+}
