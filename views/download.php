@@ -16,7 +16,7 @@
         </div>
         <div class="profile">
             <i class="fa-solid fa-circle-user profile-logo"></i>
-            <span class="username"><a href="">Fatma@gmail.com</a></span>
+            <span class="username"><a href="profile.php"><?php if(isset($_SESSION["email"]))echo $_SESSION["email"]?></a></span>
         </div>
     </div>
 </nav>
@@ -26,11 +26,14 @@
             <img src="src/images/download.svg" class="download" draggable="false">
         </div>
         <div class="actions">
-            <a href="" class="btn_field success">Download</a>
-            <a href="" class="btn_field">Logout</a>
+            <form method="post" style="display: inline;">
+                <button type="submit" name="goToDownload" class="btn_field success">Download</button>
+            </form>
+            <form method="post" style="display: inline;">
+                <button type="submit" name="logout" class="btn_field">Logout</button>
+            </form>
         </div>
     </div>
-
 </div>
 </body>
 </html>

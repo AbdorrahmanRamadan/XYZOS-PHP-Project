@@ -3,8 +3,8 @@ ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(-1);
 require_once("vendor/autoload.php");
-
-$page="payment";
+session_start();
+$page="download";
 $erJSON = "";
 $result = array(
     "email" => "",
@@ -29,7 +29,14 @@ if (isset($_POST['validate'])) {
     }
     
 }
-
+if(isset($_POST['logout']))
+{
+    $download = new Download();
+    $download->logout();
+    $page="login";
+}elseif (isset($_POST["goToDownload"])){
+    $page="download_area";
+}
 
 
 require_once("views/$page.php");
