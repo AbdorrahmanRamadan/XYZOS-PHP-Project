@@ -11,6 +11,8 @@ function validate_payment_data($email, $password1, $password2, $creditcard, $exp
     $lowercase = preg_match('@[a-z]@', $password1);
     $specialChars = preg_match('@[^\w]@', $password1);
     $number_cc = preg_match('@[0-9]@', $creditcard);
+    $valid_date=preg_match('/^(0[1-9]|1[0-2])[\/][2-9]{2}$/', $expdate);
+    $now = new DateTime();
     $errors = array();
     //email validation 
     if (empty($email)) {
@@ -40,8 +42,9 @@ function validate_payment_data($email, $password1, $password2, $creditcard, $exp
         $errors += ["credit" => "Please enter a valid credit card number"];
     }
     //expiration date validation
-    if (empty($expdate)) {
-        $errors += ["expdate" => "credit card expiration is required"];
+    if (!$valid_date ) {
+        $errors += ["expdate" => "Please enter a valid ecpiration date"];
+        
     }
     $errorJSON = json_encode($errors);
     return $errorJSON;
@@ -57,4 +60,5 @@ function createUser($email,$password1){
     $order->insertOrder($userId,0,$key0, 1);
 
 }
+
 }

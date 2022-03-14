@@ -13,6 +13,7 @@ error_reporting(-1);
     <meta charset="UTF-8">
     <title>XYZ Product</title>
     <link rel="stylesheet" href="src/css/style.css">
+
 </head>
 
 <body>
@@ -49,7 +50,7 @@ error_reporting(-1);
                                                 else echo ""; ?></label>
                 </div>
                 <div class="input_container">
-                    <input type="date" name="expire_date" placeholder="Type Expire Date" class="input_field" value="">
+                    <input  name="expire_date" placeholder="Type Expire Date Like 02/22" class="input_field" value="">
                     <label class="error_msg"><?php if (isset($result['expdate'])) echo $result['expdate'];
                                                 else echo ""; ?></label>
                 </div>
