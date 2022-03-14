@@ -1,28 +1,10 @@
 <?php
+//exp date >> month/year +validation
+//add ccv
 ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(-1);
-$erJSON = "";
-$result = array(
-    "email" => "",
-    "password1" => "",
-    "password2" => "",
-    "credit" => "",
-    "expdate" => ""
-);
-if (isset($_POST['validate'])) {
-    $email = $_POST['email'];
-    $password1 = $_POST['password1'];
-    $password2 = $_POST['password2'];
-    $creditcard = $_POST['creditcard'];
-    $expdate = $_POST['expire_date'];
-    require_once("../controllers/payment.php");
-    $erJSON = validate_payment_data($email, $password1, $password2, $creditcard, $expdate);
-    $result = json_decode($erJSON, true);
-    if (empty($result)){
-      createUser($email,$password1);
-    }
-}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -30,15 +12,15 @@ if (isset($_POST['validate'])) {
 <head>
     <meta charset="UTF-8">
     <title>XYZ Product</title>
-    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
-    <img src="../src/images/header_img.svg" class="header_img" draggable="false">
+    <img src="src/images/header_img.svg" class="header_img" draggable="false">
     <nav class="navbar">
         <div class="container">
             <div class="page_logo">
-                <img src="../src/images/logo.png" class="logo" draggable="false">
+                <img src="src/images/logo.png" class="logo" draggable="false">
             </div>
         </div>
     </nav>
@@ -78,7 +60,6 @@ if (isset($_POST['validate'])) {
             <div class="member_login">
                 <label>If you are member</label>
                 <a href="">Login</a>
-                <?php echo $userId;?>
             </div>
         </div>
 
