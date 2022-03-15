@@ -10,7 +10,7 @@ class Download
 
     function logout()
     {
-        $this->Token->remove_token($_SESSION["id"]);
+        $this->Token->remove_token($_SESSION["userID"]);
         setcookie("remember_me", "", time() - 300);
         session_destroy();
     }

@@ -4,8 +4,13 @@ ini_set('display_errors', 1);
 error_reporting(-1);
 require_once("vendor/autoload.php");
 session_start();
-$page="download";
+$page="payment";
 $erJSON = "";
+$resultedErrors=array(
+    "email"=>"",
+    "password"=>""
+);
+$resultUser=array();
 $result = array(
     "email" => "",
     "password1" => "",
@@ -38,5 +43,15 @@ if(isset($_POST['logout']))
     $page="download_area";
 }
 
+if(isset($_POST['login'])){
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $loggedUser= new Login();
+    $resultUser=$loggedUser->checkLogin($email,$password);
+    $resultedErrors = json_decode($resultUser, true);
+    if(empty($resultedErrors)){
+       $page="download";
+    }
+}
 
 require_once("views/$page.php");
