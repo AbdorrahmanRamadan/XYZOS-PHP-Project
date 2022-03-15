@@ -16,7 +16,7 @@
         </div>
         <div class="profile">
             <i class="fa-solid fa-circle-user profile-logo"></i>
-            <span class="username"><a href="">Fatma@gmail.com</a></span>
+            <span class="username"><a href=""><?php if(isset($_SESSION["userEmail"]))echo $_SESSION["userEmail"]?></a></span>
         </div>
     </div>
 </nav>

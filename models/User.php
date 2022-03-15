@@ -1,5 +1,4 @@
 <?php
-require_once("DatabaseConnection.php");
 class User  {
     
     public DatabaseConnection $user_connection;
@@ -16,6 +15,12 @@ class User  {
         $id=$this->usersTable->value($uid);
         return $id; 
     }
+    public function getUser($email,$password){
+        $loggedUser=$this->usersTable->select('id')->where('Email','=',$email)->where('Password','=',$password)->get();
+        $loggedUserID=$this->usersTable->value($loggedUser);
+        return $loggedUserID;
+    }
+
 
     /**
      * Add new user

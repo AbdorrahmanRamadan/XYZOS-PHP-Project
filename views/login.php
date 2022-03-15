@@ -18,15 +18,21 @@
 </nav>
 <div class="payment_body">
     <div class="container">
-        <form class="login_form" action="" method="post">
+        <label class="error_msg">
+        <?php if (isset($resultedErrors['invalid'])) echo $resultedErrors['invalid'];
+                                                else echo "";  ?>
+        </label>
+        <form class="login_form" method="post">
             <h3 class="form_header">Member Login</h3>
             <div class="input_container">
                 <input type="email" name="email" placeholder="Type Email" class="input_field" value="">
-                <label class="error_msg"></label>
+               <!-- <label class="error_msg"><?php /*if (isset($resultedErrors['email'])) echo $resultedErrors['email'];
+                                                else echo "";  */?></label>-->
             </div>
             <div class="input_container">
                 <input type="password" name="password" placeholder="Type Password" class="input_field" value="">
-                <label class="error_msg"></label>
+<!--                <label class="error_msg">--><?php //if (isset($resultedErrors['password'])) echo $resultedErrors['password'];
+//                                                else echo "";  ?><!--</label>-->
             </div>
             <div class="input_container check_remember_me">
                 <input type="checkbox" name="remember_me"  class="checkbox_input" id="remember">
