@@ -2,17 +2,22 @@
 
 class Login
 {
+    public $user;
+    public function __construct()
+    {
+        $this->user= new User();
+    }
+
     public function checkLogin($email,$password)
     {
         $errors=array();
         $errorJSON = "";
-        $user= new User();
         if(empty($email) || empty($password)) {
             $errors += ["invalid" => "All fields are required"];
             $errorJSON = json_encode($errors);
         }
         else {
-                $result = $user->getUser($email, sha1($password));
+                $result = $this->user->getUser($email, sha1($password));
 
                 if (empty($result)) {
                     $errors += ["invalid" => "Invalid email or password"];
@@ -20,11 +25,13 @@ class Login
 
                 } else {
                     $_SESSION['userID'] = $result;
+                    $_SESSION['userEmail']=$email;
                 }
         }
         return $errorJSON;
 
     }
+
 
 
 }

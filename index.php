@@ -4,7 +4,11 @@ ini_set('display_errors', 1);
 error_reporting(-1);
 require_once("vendor/autoload.php");
 session_start();
-$page="payment";
+$paymentObj= new Payment;
+$downloadObj = new Download();
+$loginObj= new Login();
+$tokenObj= new Token();
+$page="login";
 $erJSON = "";
 $resultedErrors=array(
     "email"=>"",
@@ -25,7 +29,6 @@ if (isset($_POST['validate'])) {
     $creditcard = $_POST['creditcard'];
     $expdate = $_POST['expire_date'];
     //require_once("controllers/payment.php");
-    $paymentObj= new Payment;
     $erJSON = $paymentObj->validate_payment_data($email, $password1, $password2, $creditcard, $expdate);
     $result = json_decode($erJSON, true);
     if (empty($result)){
@@ -34,24 +37,27 @@ if (isset($_POST['validate'])) {
     }
     
 }
-if(isset($_POST['logout']))
-{
-    $download = new Download();
-    $download->logout();
-    $page="login";
-}elseif (isset($_POST["goToDownload"])){
-    $page="download_area";
-}
-
 if(isset($_POST['login'])){
     $email=$_POST['email'];
     $password=$_POST['password'];
-    $loggedUser= new Login();
-    $resultUser=$loggedUser->checkLogin($email,$password);
-    $resultedErrors = json_decode($resultUser, true);
+    $loggedUserID=$loginObj->checkLogin($email,$password);
+    $resultedErrors = json_decode($loggedUserID, true);
     if(empty($resultedErrors)){
        $page="download";
     }
+    if(isset($_POST['remember_me'])){
+        $tokenObj->add_token($email);
+    }
+}elseif (isset($_COOKIE["remember_me"])){
+    $uid=$tokenObj->getUser($_COOKIE["remember_me"]);
+    $page="download";
+}
+if(isset($_POST['logout']))
+{
+    $downloadObj->logout();
+    $page="login";
+}elseif (isset($_POST["goToDownload"])){
+    $page="download_area";
 }
 
 require_once("views/$page.php");

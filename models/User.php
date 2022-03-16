@@ -8,7 +8,8 @@ class User  {
         $this->usersTable= $this->user_connection->getTable("users");
     }
     public function getUserById($userid){
-        //the logic for getting one user
+        $userEmail=$this->usersTable->select('Email')->where('id','=',$userid)->get();
+        return $this->usersTable->value($userEmail);
     }
     public function getUserByEmail($useremail){
         $uid = $this->usersTable->select('id')->where('Email',$useremail)->get();
