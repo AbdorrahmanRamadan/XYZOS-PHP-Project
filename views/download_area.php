@@ -7,7 +7,28 @@
     <title>Download Data</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="src/css/style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+    $(document).ready(function(){
+		 $("#count").load("utilities/refreshCounter.php");
+        setInterval(function() {
+            $("#count").load("utilities/refreshCounter.php");
+        }, 1000);
+    });
+    $(document).ready(function(){
+		 $("#link_container").load("utilities/refreshLink.php");
+        setInterval(function() {
+            $("#link_container").load("utilities/refreshLink.php");
+        }, 1000);
+    });
+
+</script>
+
+    
 </head>
+
+
 <body>
 <nav class="navbar">
     <div class="container">
@@ -26,19 +47,31 @@
             <img src="src/images/download.svg" class="download" draggable="false">
         </div>
         <div class="file-data">
+            <label id="count"> </label><br>
+            <label><?php echo "max number of downloads is 7 \n"; ?> </label><br>
+            <label><?php if($currentDownloadCount>=7)
+                {
+                    $displayedLink='<form method="post" style="display: inline;">
+                                        <button type="submit" name="logout" class="btn_field">Logout</button>
+                                    </form>';
+                } ?></label><br>
             <label>File Size: </label>
-            <span>350 MB</span>
+            <span>2 KB</span>
         </div>
         <div class="download-link">
             <div class="download-here">
                 Download From Here
             </div>
-            <div class="link">
-                <a href="">https://www.bing.com/search?q=vectors&cvid=ac1a2acee5a7</a>
+            <div id="link_container" class="link">
+                <?php echo $displayedLink;
+                ?>
+                
             </div>
         </div>
     </div>
 
 </div>
+
 </body>
+
 </html>

@@ -7,9 +7,8 @@ session_start();
 $paymentObj= new Payment;
 $downloadObj = new Download();
 $loginObj= new Login();
-$profileObj = new Profile();
 $tokenObj= new Token();
-$page="login";
+$page="payment";
 $erJSON = "";
 $resultedErrors=array(
     "email"=>"",
@@ -23,9 +22,7 @@ $result = array(
     "credit" => "",
     "expdate" => ""
 );
-$update_status ='';
-$update_email_errors='';
-$update_password_errors='';
+$downloadLink='';
 if (isset($_POST['validate'])) {
     $email = $_POST['email'];
     $password1 = $_POST['password1'];
@@ -40,6 +37,11 @@ if (isset($_POST['validate'])) {
       $page="login";
     }
     
+}
+if(isset($_GET['page'])){
+    if($_GET['page']=='login'){
+        $page='login';
+    }
 }
 if(isset($_POST['login'])){
     $email=$_POST['email'];
@@ -56,43 +58,20 @@ if(isset($_POST['login'])){
     $uid=$tokenObj->getUser($_COOKIE["remember_me"]);
     $page="download";
 }
+if(isset($_GET['key'])){
+    $downloadObj->downloadFile($_SESSION["userID"],$_GET['key']);
+    $page="download_area";
+}
 if(isset($_POST['logout']))
 {
     $downloadObj->logout();
     $page="login";
 }elseif (isset($_POST["goToDownload"])){
+    $downloadLink=$downloadObj->getDownloadLink($_SESSION["userID"]);
+    $currentDownloadCount=$downloadObj->getDownloadCount($_SESSION['userID']);
+    $displayedLink="<a href='$downloadLink' id='download_link'>$downloadLink</a>";
     $page="download_area";
+   // echo $downloadLink;
 }
-if(isset($_GET['page'])){
-    $page = $_GET['page'];
-}
-if (isset($_POST['update'])){
-    if(empty($_POST['password']) && empty($_POST['confirm_pass'])) {
-        if (empty($profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']))) {
-            $update_status = 'Updated Successfully';
-            $_SESSION['userEmail'] = $_POST['email'];
-        } else {
-            $update_email_errors = $profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']);
-        }
-    }else{
-        if($_SESSION['userEmail'] == $_POST['email']){
-            if(empty($profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']))){
-                $update_status = 'Updated Successfully';
-            }else{
-                $update_password_errors = $profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']);
-            }
-        }else{
-            if(empty($profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']))
-                &&empty($profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']))){
-                $update_status = 'Updated Successfully';
-                $_SESSION['userEmail'] = $_POST['email'];
-            }
-            else{
-                $update_email_errors = $profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']);
-                $update_password_errors = $profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']);
 
-            }
-        }
-    }
-}
 require_once("views/$page.php");

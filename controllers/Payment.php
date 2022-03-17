@@ -55,9 +55,9 @@ function createUser($email,$password1){
     $user->insertUser($email,$password1);
     $userId=$user->getUserByEmail($email);
     $order= new Order;
-    $key0= uniqid(time().'-key',TRUE);
+    $key= uniqid(time(),TRUE);
 //$uid,$download_count, $product_link, $product_id
-    $order->insertOrder($userId,0,$key0, 1);
+    $order->insertOrder($userId,0,$key, 1);
 
 }
 
