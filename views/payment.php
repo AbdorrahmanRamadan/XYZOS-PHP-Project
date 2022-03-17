@@ -60,7 +60,7 @@ error_reporting(-1);
             </form>
             <div class="member_login">
                 <label>If you are member</label>
-                <a href="">Login</a>
+                <a href="?page=login">Login</a>
             </div>
         </div>
 
