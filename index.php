@@ -5,7 +5,6 @@ error_reporting(-1);
 require_once("vendor/autoload.php");
 session_start();
 $paymentObj= new Payment;
-$downloadObj = new Download();
 $loginObj= new Login();
 $tokenObj= new Token();
 $page="payment";
@@ -22,7 +21,6 @@ $result = array(
     "credit" => "",
     "expdate" => ""
 );
-$downloadLink='';
 if (isset($_POST['validate'])) {
     $email = $_POST['email'];
     $password1 = $_POST['password1'];
@@ -58,20 +56,4 @@ if(isset($_POST['login'])){
     $uid=$tokenObj->getUser($_COOKIE["remember_me"]);
     $page="download";
 }
-if(isset($_GET['key'])){
-    $downloadObj->downloadFile($_SESSION["userID"],$_GET['key']);
-    $page="download_area";
-}
-if(isset($_POST['logout']))
-{
-    $downloadObj->logout();
-    $page="login";
-}elseif (isset($_POST["goToDownload"])){
-    $downloadLink=$downloadObj->getDownloadLink($_SESSION["userID"]);
-    $currentDownloadCount=$downloadObj->getDownloadCount($_SESSION['userID']);
-    $displayedLink="<a href='$downloadLink' id='download_link'>$downloadLink</a>";
-    $page="download_area";
-   // echo $downloadLink;
-}
-
 require_once("views/$page.php");
