@@ -6,5 +6,8 @@ session_start();
 require_once('../vendor/autoload.php');
 $refreshObj = new Download();
 $count=$refreshObj->getDownloadCount($_SESSION['userID']);
+if($count!=$_SESSION['downloadCount']){
+    $_SESSION['downloadCount']=$count;
+}
 echo "You have downloaded " . $count . " times";
 
