@@ -71,7 +71,6 @@ if (isset($_POST['update'])){
         if (empty($profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']))) {
             $update_status = 'Updated Successfully';
             $_SESSION['userEmail'] = $_POST['email'];
-            header('Location: views/profile.php');
         } else {
             $update_email_errors = $profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']);
         }
@@ -83,15 +82,16 @@ if (isset($_POST['update'])){
                 $update_password_errors = $profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']);
             }
         }else{
-            /*if(empty($profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']))
+            if(empty($profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']))
                 &&empty($profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']))){
                 $update_status = 'Updated Successfully';
                 $_SESSION['userEmail'] = $_POST['email'];
-                header('Location: views/profile.php');
             }
             else{
+                $update_email_errors = $profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']);
+                $update_password_errors = $profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']);
 
-            }*/
+            }
         }
     }
 }

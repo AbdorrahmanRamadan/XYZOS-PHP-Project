@@ -7,6 +7,7 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="src/css/style.css">
+
 </head>
 <body>
 <nav class="navbar">
@@ -22,7 +23,7 @@
 </nav>
 <div class="profile_body">
     <div class="container">
-        <div class="update_status"><?php echo $update_status?></div>
+        <div class="update_success"><?php echo $update_status?></div>
         <form class="profile_form" method="post">
             <h3 class="form_header">Edit Your Profile</h3>
             <div class="input_container">

@@ -35,8 +35,14 @@ class Profile
         }
         return $update_password_errors;
     }
-    function update_email_password(){
+    /*function update_email_password($user_id, $current_email, $new_email, $new_password, $confirm_password){
+        $update_errors = array(
+            'email'=>'',
+            'password'=>''
+        );
+        $update_errors['email'] = $this->update_user_email($user_id, $current_email, $new_email);
+        $update_errors['password'] = $this->update_user_password($user_id, $new_password, $confirm_password);
 
-    }
+    }*/
 
 }
