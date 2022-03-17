@@ -44,6 +44,13 @@ body{
 .profile_form{
     margin: auto;
 }
+.profile_body .update_success{
+    text-align: center;
+    width: 40%;
+    margin: 15px auto;
+    background-color: #D1E7DD;
+    color: #0F5132;
+}
 .form_header{
     font-size: 18px;
     color: #B1B1B1;
@@ -173,3 +180,4 @@ body{
     display: inline-block;
     vertical-align: middle;
 }
+
