@@ -16,17 +16,18 @@
         </div>
         <div class="profile">
             <i class="fa-solid fa-circle-user profile-logo"></i>
-            <span class="username"><a href="">Fatma@gmail.com</a></span>
+            <span class="username"><a href=""><?php if(isset($_SESSION["userEmail"]))echo $_SESSION["userEmail"]?></a></span>
         </div>
     </div>
 </nav>
 <div class="profile_body">
     <div class="container">
-        <form class="profile_form" action="" method="post">
+        <div class="update_status"><?php echo $update_status?></div>
+        <form class="profile_form" method="post">
             <h3 class="form_header">Edit Your Profile</h3>
             <div class="input_container">
-                <input type="email" name="email"  class="input_field" value="Fatma@gmail.com">
-                <label class="error_msg"></label>
+                <input type="text" name="email"  class="input_field" value="<?php if(isset($_SESSION["userEmail"]))echo $_SESSION["userEmail"]?>">
+                <label class="error_msg"><?php echo $update_email_errors?></label>
             </div>
             <div class="input_container">
                 <input type="password" name="password" placeholder="Type New Password" class="input_field" value="">
@@ -34,10 +35,10 @@
             </div>
             <div class="input_container">
                 <input type="password" name="confirm_pass" placeholder="Confirm New Password" class="input_field" value="">
-                <label class="error_msg"></label>
+                <label class="error_msg"><?php echo $update_password_errors?></label>
             </div>
             <div class="input_container">
-                <input type="submit" name="register" class="btn_field" value="Update">
+                <input type="submit" name="update" class="btn_field" value="Update">
             </div>
         </form>
     </div>

@@ -7,6 +7,7 @@ session_start();
 $paymentObj= new Payment;
 $downloadObj = new Download();
 $loginObj= new Login();
+$profileObj = new Profile();
 $tokenObj= new Token();
 $page="login";
 $erJSON = "";
@@ -22,6 +23,9 @@ $result = array(
     "credit" => "",
     "expdate" => ""
 );
+$update_status ='';
+$update_email_errors='';
+$update_password_errors='';
 if (isset($_POST['validate'])) {
     $email = $_POST['email'];
     $password1 = $_POST['password1'];
@@ -59,5 +63,36 @@ if(isset($_POST['logout']))
 }elseif (isset($_POST["goToDownload"])){
     $page="download_area";
 }
+if(isset($_GET['page'])){
+    $page = $_GET['page'];
+}
+if (isset($_POST['update'])){
+    if(empty($_POST['password']) && empty($_POST['confirm_pass'])) {
+        if (empty($profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']))) {
+            $update_status = 'Updated Successfully';
+            $_SESSION['userEmail'] = $_POST['email'];
+            header('Location: views/profile.php');
+        } else {
+            $update_email_errors = $profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']);
+        }
+    }else{
+        if($_SESSION['userEmail'] == $_POST['email']){
+            if(empty($profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']))){
+                $update_status = 'Updated Successfully';
+            }else{
+                $update_password_errors = $profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']);
+            }
+        }else{
+            /*if(empty($profileObj->update_user_email($_SESSION['userID'], $_SESSION['userEmail'], $_POST['email']))
+                &&empty($profileObj->update_user_password($_SESSION['userID'], $_POST['password'], $_POST['confirm_pass']))){
+                $update_status = 'Updated Successfully';
+                $_SESSION['userEmail'] = $_POST['email'];
+                header('Location: views/profile.php');
+            }
+            else{
 
+            }*/
+        }
+    }
+}
 require_once("views/$page.php");
