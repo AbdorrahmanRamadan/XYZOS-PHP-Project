@@ -26,27 +26,39 @@ This is a web application that allows its users to download a file (XYZOS.zip) a
 
 ### Dependencies
 
-* 
-* 
+* composer
+* PHP 7.4 or higher
+* Apache2 service
+* MySQL
 
 ### Installing
 
-* 
-* 
+* Clone the project's repository
+* Import xyzos42.sql file
+* Edit config.php file, in (_username_,_password_) put your MySQL credentials
+* Run composer install command on the local repository directory
+* Make sure Apache and MySQl services are running (e.g. using xampp)
+* Run the application from your browser by typing localhost/XYZOS-PHP-Project/
 
 ## Features
-*
-*
-*
+* Users enter their payment info. and it gets validated
+* Registered users can login using their email and password 
+* Users can preserve their loging credentials by checking the remember me option
+* After authentication users can download the product up to 7 times
+* Random download links are generated and updated after each download.
+* Each download link can be used only once
+* Users can edit their profile credentials (Email or password) in their profile page 
+* Users can logout at any time
 
 ## Technologies used
 * PHP
-* MYSQL
+* Eloquent ORM (illuminate DB)
+* MySQL
 * HTML/CSS/JS
 
 ## Authors
 
-Contributors names and contact info
+Contributors
 
 * Abdorrahman Ramdan
 * Fatma Abdelhameed
