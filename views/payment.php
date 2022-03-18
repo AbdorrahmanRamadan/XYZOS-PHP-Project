@@ -4,6 +4,41 @@
 ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(-1);
+require_once("../vendor/autoload.php");
+session_start();
+$paymentObj= new Payment();
+$tokenObj= new Token();
+
+$result = array(
+    "email" => "",
+    "password1" => "",
+    "password2" => "",
+    "credit" => "",
+    "expdate" => ""
+);
+if (isset($_COOKIE["remember_me"])){
+    $uid=$tokenObj->getUser($_COOKIE["remember_me"]);
+    header("Location:download.php");
+}
+if (isset($_POST['validate'])) {
+    $email = $_POST['email'];
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
+    $creditcard = $_POST['creditcard'];
+    $expdate = $_POST['expire_date'];
+    $erJSON = $paymentObj->validate_payment_data($email, $password1, $password2, $creditcard, $expdate);
+    $result = json_decode($erJSON, true);
+    if (empty($result)){
+      $paymentObj->createUser($email,$password1);
+      header("Location:login.php");
+    }
+    
+}
+if(isset($_GET['page'])){
+    if($_GET['page']=='login'){
+       header("Location:login.php");
+    }
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -12,16 +47,16 @@ error_reporting(-1);
 <head>
     <meta charset="UTF-8">
     <title>XYZ Product</title>
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../src/css/style.css">
 
 </head>
 
 <body>
-    <img src="src/images/header_img.svg" class="header_img" draggable="false">
+    <img src="../src/images/header_img.svg" class="header_img" draggable="false">
     <nav class="navbar">
         <div class="container">
             <div class="page_logo">
-                <img src="src/images/logo.png" class="logo" draggable="false">
+                <img src="../src/images/logo.png" class="logo" draggable="false">
             </div>
         </div>
     </nav>

@@ -41,6 +41,14 @@ body{
     padding: 25px 15px;
     box-shadow: 0 0 8px rgb(0 0 0 / 16%)
 }
+.profile_body .update_success{
+    text-align: center;
+    width: 40%;
+    margin: 15px auto;
+    color: #0F5132;
+    line-height: 2;
+    background-color: #D1E7DD;
+}
 .profile_form{
     margin: auto;
 }
@@ -172,4 +180,15 @@ body{
     font-size: 15px;
     display: inline-block;
     vertical-align: middle;
+}
+.btn-logout{
+    background-color: #BF2C2C;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 200;
+    margin: 5px 10px;
+    font-size: 12px;
+    color: #fff;
+    cursor: pointer;
 }

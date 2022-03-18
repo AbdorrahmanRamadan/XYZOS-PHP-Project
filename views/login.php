@@ -1,18 +1,48 @@
 <?php
+require_once("../vendor/autoload.php");
+session_start();
+$loginObj= new Login();
+$tokenObj= new Token();
+$resultedErrors=array(
+    "email"=>"",
+    "password"=>""
+);
+if(isset($_POST['login'])){
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $loggedUserID=$loginObj->checkLogin($email,$password);
+    $resultedErrors = json_decode($loggedUserID, true);
+    if(empty($resultedErrors)){
+        echo $_SESSION['userID'];
+        header("Location:download.php");
+    }
+    if(isset($_POST['remember_me'])){
+        $tokenObj->add_token($email);
+    }
+}elseif (isset($_COOKIE["remember_me"])){
+    $uid=$tokenObj->getUser($_COOKIE["remember_me"]);
+    header("Location:download.php");
+}
+if(isset($_GET['page'])){
+    if($_GET['page'] == 'payment'){
+        header("Location:payment.php");
+    }
+
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>LOGIN</title>
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../src/css/style.css">
 </head>
 <body>
-<img src="src/images/header_img.svg" class="header_img" draggable="false">
+<img src="../src/images/header_img.svg" class="header_img" draggable="false">
 <nav class="navbar">
     <div class="container">
         <div class="page_logo">
-            <img src="src/images/logo.png" class="logo" draggable="false">
+            <img src="../src/images/logo.png" class="logo" draggable="false">
         </div>
     </div>
 </nav>
@@ -42,6 +72,10 @@
                 <input type="submit" name="login" class="btn_field" value="Login">
             </div>
         </form>
+        <div class="member_login">
+            <label>Do not have account?</label>
+            <a href="?page=payment">Payment</a>
+        </div>
     </div>
 
 </div>
