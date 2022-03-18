@@ -48,7 +48,10 @@ if(isset($_GET['page'])){
        header("Location:login.php");
     }
 }
-
+if(isset($_POST['generateQRCode'])){
+    require_once ("../utilities/QRCodeGenerator.php");
+    $QRCode= QRCodeGenerator::generateQRCode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -107,7 +110,12 @@ if(isset($_GET['page'])){
                 <a href="?page=login">Login</a>
             </div>
         </div>
-
+        <form action="" method="post">
+            <input type="submit" name="generateQRCode" class="btn_field" value="generateQRCode">
+        </form>
+        <div class="QRCode">
+            <image src="<?php echo $QRCode ?>" alt=""></image>
+        </div>
     </div>
 </body>
 

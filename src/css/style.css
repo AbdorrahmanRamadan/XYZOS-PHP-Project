@@ -192,3 +192,11 @@ body{
     color: #fff;
     cursor: pointer;
 }
+.QRCode{
+    position: fixed;
+    right: 25%;
+    top:25%;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+}

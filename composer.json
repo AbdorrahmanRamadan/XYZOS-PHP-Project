@@ -3,7 +3,8 @@
   "description": "PHP project",
   "license" : "MIT",
   "require": {
-    "illuminate/database": "*"
+    "illuminate/database": "*",
+    "chillerlan/php-qrcode": "^4.3"
   },
 
  "autoload":{
