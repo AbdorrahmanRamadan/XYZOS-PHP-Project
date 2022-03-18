@@ -2,12 +2,16 @@
 class Profile
 {
     public $user;
+    public function __construct()
+    {
+        $this->user = new User();
+    }
     function update_user_email($user_id,$current_email,$new_email){
         $update_email_errors = '';
         if (!empty($new_email) && filter_var($new_email, FILTER_VALIDATE_EMAIL) ){
             if($new_email != $current_email){
-                $user = new User();
-                $user->updateUserEmail($new_email, $user_id);
+                $this->user = new User();
+                $this->user->updateUserEmail($new_email, $user_id);
             }else{
                 $update_email_errors = 'The same email no updates done';
             }
@@ -30,8 +34,8 @@ class Profile
             $update_password_errors = "Passwords didn't match";
         }
         else{
-            $user = new User();
-            $user->updateUserPassword(sha1($new_password), $user_id);
+            $this->user = new User();
+            $this->user->updateUserPassword(sha1($new_password), $user_id);
         }
         return $update_password_errors;
     }
