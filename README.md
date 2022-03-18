@@ -36,7 +36,8 @@ This is a web application that allows its users to download a file (XYZOS.zip) a
 * Clone the project's repository
 * Import xyzos42.sql file
 * Edit config.php file, in (_username_,_password_) put your MySQL credentials
-* Run composer install command on the local repository directory
+* Run (composer install) command on the local repository directory
+* You might need to use (composer dump-autoload) command
 * Make sure Apache and MySQl services are running (e.g. using xampp)
 * Run the application from your browser by typing localhost/XYZOS-PHP-Project/
 
