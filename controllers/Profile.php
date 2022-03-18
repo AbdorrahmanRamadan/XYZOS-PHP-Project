@@ -26,6 +26,7 @@ class Profile
         $lowercase = preg_match('@[a-z]@', $new_password);
         $specialChars = preg_match('@[^\w]@', $new_password);
         $update_password_errors = '';
+        $hashedCurrentPw=$this->user->checkPassword($user_id,sha1($new_password));
         if(strlen($new_password) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars){
             $update_password_errors = 'Password must be at least 8 characters in length and must contain at least one number, 
                                         one upper case letter, one lower case letter and one special character';
@@ -33,10 +34,18 @@ class Profile
         elseif($confirm_password != $new_password){
             $update_password_errors = "Passwords didn't match";
         }
+        
+    
         else{
-            $this->user = new User();
+           if($hashedCurrentPw != sha1($new_password)){
             $this->user->updateUserPassword(sha1($new_password), $user_id);
-        }
+           }
+           else{
+            $update_password_errors = "Please Enter a new password";
+
+           }
+        
+    }
         return $update_password_errors;
     }
 }

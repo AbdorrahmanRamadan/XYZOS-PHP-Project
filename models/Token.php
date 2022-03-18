@@ -16,9 +16,7 @@ class Token
         $this->tokensTable->insert($array);
         setcookie("remember_me","$newUserToken",time()+86400*30);
     }
-    public function remove_token($userid){
-        //update download link count and update the link with new ink
-    }
+   
     public function getUser($token){
         $tokenUser= $this->tokensTable->select("ID")->where("remember_me_token","=","$token")->get();
         $uid=$this->tokensTable->value($tokenUser);
@@ -26,6 +24,9 @@ class Token
             $_SESSION['userID'] = $uid;
             $_SESSION['userEmail']=$this->userObj->getUserById($uid);
         }
+    }
+    public function remove_token($userid){
+        //update download link count and update the link with new ink
     }
 
 }
