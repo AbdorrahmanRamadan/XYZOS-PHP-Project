@@ -44,12 +44,12 @@ class User  {
     /**
      * update user
      */
-    public function updateUserEmail($user_email, $user_id){
-            //update user function
+    public function updateUserEmail($new_user_email, $user_id){
+        $this->usersTable->where('id',"=",$user_id)->update(['Email'=>$new_user_email]);
     }
-    public function updateUserPassword($user_email, $user_id){
-        //update user password
-}
+    public function updateUserPassword($user_new_password, $user_id){
+        $this->usersTable->where('id',"=",$user_id)->update(['Password'=>$user_new_password]);
+    }
 
     public function check_user_login($email, $password){
         //write login check function

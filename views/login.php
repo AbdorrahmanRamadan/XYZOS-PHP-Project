@@ -23,6 +23,12 @@ if(isset($_POST['login'])){
     $uid=$tokenObj->getUser($_COOKIE["remember_me"]);
     header("Location:download.php");
 }
+if(isset($_GET['page'])){
+    if($_GET['page'] == 'payment'){
+        header("Location:payment.php");
+    }
+
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -66,6 +72,10 @@ if(isset($_POST['login'])){
                 <input type="submit" name="login" class="btn_field" value="Login">
             </div>
         </form>
+        <div class="member_login">
+            <label>Do not have account?</label>
+            <a href="?page=payment">Payment</a>
+        </div>
     </div>
 
 </div>

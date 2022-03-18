@@ -11,6 +11,11 @@ if(isset($_SESSION['userID'])){
 }else{
     header("Location:login.php");
 }
+if(isset($_GET['page'])){
+    if ($_GET['page'] == 'profile'){
+        header('Location:profile.php');
+    }
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -48,8 +53,13 @@ if(isset($_SESSION['userID'])){
             <img src="../src/images/logo.png" class="logo" draggable="false">
         </div>
         <div class="profile">
-            <i class="fa-solid fa-circle-user profile-logo"></i>
-            <span class="username"><a href=""><?php if(isset($_SESSION["userEmail"]))echo $_SESSION["userEmail"]?></a></span>
+            <label>
+                <i class="fa-solid fa-circle-user profile-logo"></i>
+                <span class="username"><a href="?page=profile"><?php if (isset($_SESSION["userEmail"])) echo $_SESSION["userEmail"] ?></a></span>
+            </label>
+            <form method="post" style="display: inline;">
+                <button type="submit" name="logout" class="btn-logout" title="Logout"><i class="fa-solid fa-power-off"></i></button>
+            </form>
         </div>
     </div>
 </nav>

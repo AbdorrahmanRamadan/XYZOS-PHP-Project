@@ -10,12 +10,15 @@ if(isset($_SESSION['userID'])){
         $downloadLink = $downloadObj->getDownloadLink($_SESSION["userID"]);
         $currentDownloadCount = $downloadObj->getDownloadCount($_SESSION['userID']);
         $_SESSION['downloadLink']=$downloadLink;
-        //$_SESSION['downloadCount']=$currentDownloadCount;
-
         header("Location:download_area.php");
     }}
 else{
     header("Location:payment.php");
+}
+if(isset($_GET['page'])){
+    if ($_GET['page'] == 'profile'){
+        header('Location:profile.php');
+    }
 }
 ?>
 <!DOCTYPE HTML>
@@ -35,8 +38,13 @@ else{
             <img src="../src/images/logo.png" class="logo" draggable="false">
         </div>
         <div class="profile">
-            <i class="fa-solid fa-circle-user profile-logo"></i>
-            <span class="username"><a href="profile.php"><?php if (isset($_SESSION["userEmail"])) echo $_SESSION["userEmail"] ?></a></span>
+            <label>
+                <i class="fa-solid fa-circle-user profile-logo"></i>
+                <span class="username"><a href="?page=profile"><?php if (isset($_SESSION["userEmail"])) echo $_SESSION["userEmail"] ?></a></span>
+            </label>
+            <form method="post" style="display: inline;">
+                <button type="submit" name="logout" class="btn-logout" title="Logout"><i class="fa-solid fa-power-off"></i></button>
+            </form>
         </div>
     </div>
 </nav>
