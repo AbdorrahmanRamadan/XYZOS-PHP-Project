@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 error_reporting(-1);
 require_once("../vendor/autoload.php");
 session_start();
-$paymentObj= new Payment();
+$paymentObj= new Payment;
 $tokenObj= new Token();
 
 $result = array(
@@ -28,6 +28,15 @@ if (isset($_POST['validate'])) {
     $expdate = $_POST['expire_date'];
     $erJSON = $paymentObj->validate_payment_data($email, $password1, $password2, $creditcard, $expdate);
     $result = json_decode($erJSON, true);
+    if(isset($result['email']) && $result['email']=="This email already exist"){
+        $result = array(
+            "email" => "This email already exist",
+            "password1" => "",
+            "password2" => "",
+            "credit" => "",
+            "expdate" => ""
+        );       
+    }
     if (empty($result)){
       $paymentObj->createUser($email,$password1);
       header("Location:login.php");
@@ -65,7 +74,7 @@ if(isset($_GET['page'])){
             <form class="payment_form" action="" method="post">
                 <h3 class="form_header">Apply Your Payment</h3>
                 <div class="input_container">
-                    <input type="email" name="email" placeholder="Type Email" class="input_field" value="">
+                    <input type="email" name="email" placeholder="Type Email" class="input_field" value="<?php if (isset($result['email'])) echo ""; else echo $_POST['email']  ?>">
                     <label class="error_msg"><?php if (isset($result['email'])) echo $result['email'];
                                                 else echo "";  ?></label>
                 </div>
@@ -80,12 +89,12 @@ if(isset($_GET['page'])){
                                                 else echo ""; ?></label>
                 </div>
                 <div class="input_container">
-                    <input type="number" name="creditcard" placeholder="Type Credit Card Number" class="input_field" value="">
+                    <input type="number" name="creditcard" placeholder="Type Credit Card Number" class="input_field" value="<?php if (isset($result['credit'])) echo ""; else echo $_POST['creditcard'] ?>">
                     <label class="error_msg"><?php if (isset($result['credit'])) echo $result['credit'];
                                                 else echo ""; ?></label>
                 </div>
                 <div class="input_container">
-                    <input  name="expire_date" placeholder="Type Expire Date Like 02/22" class="input_field" value="">
+                    <input  name="expire_date" placeholder="Type Expire Date Like 02/22" class="input_field" value="<?php if(isset($result['expdate'])) echo ""; else echo $_POST['expire_date'] ?>">
                     <label class="error_msg"><?php if (isset($result['expdate'])) echo $result['expdate'];
                                                 else echo ""; ?></label>
                 </div>

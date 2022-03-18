@@ -17,7 +17,9 @@ if(isset($_POST['login'])){
         header("Location:download.php");
     }
     if(isset($_POST['remember_me'])){
-        $tokenObj->add_token($email);
+        if(empty($resultedErrors)){
+            $tokenObj->add_token($email);
+        }
     }
 }elseif (isset($_COOKIE["remember_me"])){
     $uid=$tokenObj->getUser($_COOKIE["remember_me"]);
@@ -55,14 +57,12 @@ if(isset($_GET['page'])){
         <form class="login_form" method="post">
             <h3 class="form_header">Member Login</h3>
             <div class="input_container">
-                <input type="email" name="email" placeholder="Type Email" class="input_field" value="">
-               <!-- <label class="error_msg"><?php /*if (isset($resultedErrors['email'])) echo $resultedErrors['email'];
-                                                else echo "";  */?></label>-->
+                <input type="email" name="email" placeholder="Type Email" class="input_field"value="<?php if (isset($resultedErrors['email'])) echo ""; else echo $_POST['email']  ?>">
+             
             </div>
             <div class="input_container">
                 <input type="password" name="password" placeholder="Type Password" class="input_field" value="">
-<!--                <label class="error_msg">--><?php //if (isset($resultedErrors['password'])) echo $resultedErrors['password'];
-//                                                else echo "";  ?><!--</label>-->
+
             </div>
             <div class="input_container check_remember_me">
                 <input type="checkbox" name="remember_me"  class="checkbox_input" id="remember">

@@ -10,6 +10,7 @@ if(isset($_SESSION['userID'])){
         $downloadLink = $downloadObj->getDownloadLink($_SESSION["userID"]);
         $currentDownloadCount = $downloadObj->getDownloadCount($_SESSION['userID']);
         $_SESSION['downloadLink']=$downloadLink;
+        $_SESSION['downloadCount']=$$currentDownloadCount;
         header("Location:download_area.php");
     }}
 else{
