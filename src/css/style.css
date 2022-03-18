@@ -192,3 +192,37 @@ body{
     color: #fff;
     cursor: pointer;
 }
+.share{
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    top: 40%;
+    right: -250px;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+}
+.share_tab{
+    position: absolute;
+    left: -40px;
+    padding: 0;
+}
+#toggle_QRCode{
+    border: none;
+    background-color: #BF2C2C;
+    color: #fff;
+    border-radius: 10px 0 0 10px;
+    padding: 5px 10px;
+    font-size: 22px;
+    margin-top: 50%;
+
+}
+.showSlideOut {
+    right: 0px !important;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.share_content{
+    background-color: #BF2C2C;
+}

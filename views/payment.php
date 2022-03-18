@@ -48,7 +48,12 @@ if(isset($_GET['page'])){
        header("Location:login.php");
     }
 }
-
+/*if(isset($_POST['generateQRCode'])){
+    require_once ("../utilities/QRCodeGenerator.php");
+    $QRCode= QRCodeGenerator::generateQRCode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
+}*/
+require_once ("../utilities/QRCodeGenerator.php");
+$QRCode= QRCodeGenerator::generateQRCode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -56,6 +61,7 @@ if(isset($_GET['page'])){
 <head>
     <meta charset="UTF-8">
     <title>XYZ Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../src/css/style.css">
 
 </head>
@@ -107,8 +113,22 @@ if(isset($_GET['page'])){
                 <a href="?page=login">Login</a>
             </div>
         </div>
+        <div class="share">
+            <div class="share_tab">
+                <button id="toggle_QRCode"><i class="fa-solid fa-share-nodes"></i></button>
+            </div>
+            <div class="share_content">
+                <image src="<?php echo $QRCode ?>" alt=""></image>
+            </div>
+        </div>
 
     </div>
+    <script>
+        document.querySelector('.share').onclick = function(){
+            document.querySelector('.share').classList.toggle('showSlideOut');
+            console.log("Test");
+        }
+    </script>
 </body>
 
 </html>
