@@ -3,13 +3,17 @@ require_once("../vendor/autoload.php");
 session_start();
 $downloadObj = new Download();
 if(isset($_SESSION['userID'])){
+    if (isset($_POST['logout'])) {
+        $downloadObj->logout();
+        header("Location:payment.php");
+    }
     $link=$_SESSION['downloadLink']; //key?
     $displayedLink="<a href='$link' id='download_link'>$link</a>";
     if(isset($_GET['key'])){
         $downloadObj->downloadFile($_SESSION["userID"],$_GET['key']);
     }
 }else{
-    header("Location:login.php");
+    header("Location:payment.php");
 }
 if(isset($_GET['page'])){
     if ($_GET['page'] == 'profile'){

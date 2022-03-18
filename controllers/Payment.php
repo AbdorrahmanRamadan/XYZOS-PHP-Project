@@ -51,10 +51,10 @@ function validate_payment_data($email, $password1, $password2, $creditcard, $exp
 }
 
 function createUser($email,$password1){
-    $user = new User;
+    $user = new User();
     $user->insertUser($email,$password1);
     $userId=$user->getUserByEmail($email);
-    $order= new Order;
+    $order= new Order();
     $key= uniqid(time(),TRUE);
 //$uid,$download_count, $product_link, $product_id
     $order->insertOrder($userId,0,$key, 1);
